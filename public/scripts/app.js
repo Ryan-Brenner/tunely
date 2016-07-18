@@ -37,16 +37,24 @@ sampleAlbums.push({
 
 
 
+
 $(document).ready(function() {
   console.log('app.js loaded!');
-});
-
-
-
+  sampleAlbums.forEach( function (album){
+  renderAlbum(album)
+})});
 
 
 // this function takes a single album and renders it to the page
 function renderAlbum(album) {
-  console.log('rendering album:', album);
-
+  console.log('rendering album', album);
+  // setting album html variable to the id=album-template in the index.html file
+  var albumHtml = $('#album-template').html();
+  console.log(albumHtml);
+  // taking the templated html and making the function 'albumTemplate
+  var albumTemplate = Handlebars.compile(albumHtml);
+  //templated html
+  var html = albumTemplate(album);
+//selects the albums div and prepends it with the templated html filled in
+  $('#albums').prepend(html);
 }
